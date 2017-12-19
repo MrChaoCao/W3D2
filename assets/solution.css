@@ -1,15 +1,12 @@
-/* Introduction to Cascading Style Sheets */
-
 body {
   /* If the user cannot load the Arial font, the sans-serif font is used */
   font-family: Arial, sans-serif;
   background-color: #FEFFF1;
-  width: 900px;
-  margin: 0 auto;
 }
 
 h1 {
   font-size: 38px;
+  margin-bottom: 10px;
 }
 
 h2 {
@@ -58,7 +55,7 @@ input[type="radio"]:checked {
 }
 
 
-input:last-child {
+input[type="submit"]:last-child {
     background: gold;
 }
 
@@ -68,6 +65,7 @@ input:last-child:hover {
 
 ol li:nth-of-type(2n) {
   background-color: whitesmoke;
+  margin: 10px 0;
 }
 
 h2 + .user_review {
@@ -75,45 +73,53 @@ h2 + .user_review {
 }
 
 nav {
-  display: inline-block;
-  padding: 20px;
+    display: inline-block;
 }
 
 nav ul li {
-  display: inline-block;
-  padding: 20px;
+    display:  inline-block;
 }
 
-aside {
-  width: 180px;
-  display: inline-block;
-  margin-right: 15px;
+nav ul li a {
+    padding: 20px;
+    display: block;
+}
+
+body {
+    margin: 0 auto; /* Common Centering Technique */
+    width: 900px;
 }
 
 section {
-  width: 700px;
-  display: inline-block;
-  vertical-align: top;
+    width: 700px;
+    display: inline-block;
+    vertical-align: top;
 }
 
-aside ul li {
-  margin-top: 15px;
-  /*margin-bottom: 15px;*/
+aside {
+    width: 180px;
+    margin-right: 15px;
+    display: inline-block;
 }
 
-section ol li {
-  margin-top: 15px;
+.ingredients-list li {
+ margin: 15px 0px;
 }
 
-section form input{
+input[type="text"], select {
   display: block;
+  width: 175px;
 }
 
-section select {
-  margin: 10px;
+select {
+  margin: 10px 0;
+  width: 180px;
 }
 
 textarea {
-  margin: 10px;
-  width: 650px;
+  width: 350px;
+}
+
+label {
+  display: block;
 }
