@@ -1,4 +1,4 @@
-
+DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
   id INTEGER PRIMARY KEY,
@@ -6,27 +6,46 @@ CREATE TABLE users (
   lname TEXT NOT NULL
 );
 
+DROP TABLE IF EXISTS questions;
+
 CREATE TABLE questions(
   id INTEGER PRIMARY KEY,
   title TEXT NOT NULL,
   body TEXT,
+  author_id INTEGER NOT NULL,
+
   FOREIGN KEY (author_id) REFERENCES users(id)
 );
 
+DROP TABLE IF EXISTS question_follows;
+
 CREATE TABLE question_follows(
+  user_id INTEGER NOT NULL,
+  question_id INTEGER NOT NULL,
+
   FOREIGN KEY (user_id) REFERENCES users(id),
   FOREIGN KEY (question_id) REFERENCES questions(id)
 );
 
+DROP TABLE IF EXISTS replies;
+
 CREATE TABLE replies(
   id INTEGER PRIMARY KEY,
-  FOREIGN KEY (question_id) REFERENCES questions(id),
+  question_id INTEGER NOT NULL,
+  user_id INTEGER NOT NULL,
   parent_id INTEGER,
-  FOREIGN KEY (user_id) REFERENCES users(id),
-  body TEXT
+  body TEXT,
+
+  FOREIGN KEY (question_id) REFERENCES questions(id),
+  FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
+DROP TABLE IF EXISTS question_likes;
+
 CREATE TABLE question_likes(
+  user_id INTEGER NOT NULL,
+  question_id INTEGER NOT NULL,
+
   FOREIGN KEY (user_id) REFERENCES users(id),
   FOREIGN KEY (question_id) REFERENCES questions(id)
 );
@@ -52,7 +71,7 @@ VALUES
 (3, 2);
 
 INSERT INTO
-replies (question_id, parent_id, user_id, body)ß
+replies (question_id, parent_id, user_id, body)
 VALUES
 (2, null, 2, 'Anastassia Bobokolanova'),
 (2, 1, 3, 'cool');
