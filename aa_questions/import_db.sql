@@ -55,32 +55,47 @@ users (fname, lname)
 VALUES
 ('Chao', 'Cao'),
 ('Tan Loc', 'Phan'),
-('Kush', 'Patel');
+('Kush', 'Patel'),
+('Aaron', 'Wayne'),
+('AJ', 'Ansel');
 
 INSERT INTO
 questions (title, body, author_id)
 VALUES
 ('SQL Question', 'No REALLY, how do you use SQL???!', 2),
-('TA Question', 'Who is your favorite TA?', 1);
+('TA Question', 'Who is your favorite TA?', 1),
+('Bathroom', 'Where is the bathroom?', 5),
+('Kitchen', 'Where is the kitchen?', 5);
 
 INSERT INTO
 question_follows (user_id, question_id)
 VALUES
 (2, 2),
 (3, 1),
-(3, 2);
+(3, 2),
+(5, 2),
+(2, 3),
+(1, 3);
 
 INSERT INTO
 replies (question_id, parent_id, user_id, body)
 VALUES
 (2, null, 2, 'Anastassia Bobokolanova'),
-(2, 1, 3, 'cool');
+(2, 1, 3, 'cool'),
+(2, 1, 1, 'Me too!'),
+(4, null, 5, 'It''next to the bathroom');
 
 INSERT INTO
 question_likes (user_id, question_id)
 VALUES
 (1, 2),
-(2, 1);
+(2, 1),
+(3, 1),
+(3, 2),
+(3, 3),
+(3, 4),
+(4, 4),
+(5, 4);
 
 -- replies
 -- ID |  PARENT_ID |
