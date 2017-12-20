@@ -1,4 +1,6 @@
 require_relative 'question_database'
+require_relative 'user'
+require_relative 'question'
 
 class QuestionLike
   attr_accessor :user_id, :question_id
@@ -76,7 +78,26 @@ class QuestionLike
 
     return nil if liked_questions.empty?
 
-    liked_questions.map{ |datum| Question.new(datum)}
+    liked_questions.map { |datum| Question.new(datum)}
+  end
+
+  def self.most_liked_questions(n)
+    questions = QuestionDBConnection.instance.execute(<<-SQL, n)
+    SELECT
+      title, body, author_id
+    FROM
+      question_likes
+    JOIN
+      questions ON question_likes.question_id = questions.id
+    GROUP BY
+      question_id
+    ORDER BY COUNT(question_id) DESC
+    LIMIT ?
+    SQL
+
+    return nil if questions.empty?
+
+    questions
   end
 
   def initialize(options)

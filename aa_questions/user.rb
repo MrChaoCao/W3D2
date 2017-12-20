@@ -1,6 +1,7 @@
 require_relative 'question_database'
 require_relative 'question'
 require_relative 'reply'
+require_relative 'question_like'
 
 class User
   attr_accessor :fname, :lname
@@ -60,5 +61,9 @@ class User
 
   def authored_replies
     Reply.find_by_user_id(@id)
+  end
+
+  def liked_questions
+    QuestionLike.liked_questions_for_user_id(@id)
   end
 end
